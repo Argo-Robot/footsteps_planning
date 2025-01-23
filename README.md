@@ -6,39 +6,44 @@
 
 <div>
     <img src="./images/global_traj.png" alt="Global Trajectory" style="width:70%; height:auto;">
-    <p><em>Global Trajectory</em></p>
 </div>
 
 ### 2) 2D Footsteps Planning
 
-![Argo](./images/2D_footsteps.png)
-*2D Footsteps Planning*
+<div>
+    <img src="./images/2D_footsteps.png" alt="Global Trajectory" style="width:70%; height:auto;">
+</div>
 
 ### 3) 3D Feet Trajectory Planning
 
-![Argo](./images/3D.PNG)
-*3D Feet Trajectory Planning*
+<div>
+    <img src="./images/3D.PNG" alt="Global Trajectory" style="width:70%; height:auto;">
+</div>
 
 ### 4) ZMP Trajectory Generation
 
-![Argo](./images/zmp.png)
-*ZMP Trajectory Generation*
+<div>
+    <img src="./images/zmp.png" alt="Global Trajectory" style="width:70%; height:auto;">
+</div>
 
 ### 5) CoM Pelvis Trajectory Generation
 
 #### 5.1) Dynamics Relations with ZMP
 
-![Argo](./images/com_dyn.png)
-*CoM Trajectory Generation*
+<div>
+    <img src="./images/com_dyn.png" alt="Global Trajectory" style="width:70%; height:auto;">
+</div>
 
 #### 5.2) Open-Loop Sine Wave 
 
-![Argo](./images/com_sine.png)
-*CoM Trajectory Generation*
+<div>
+    <img src="./images/com_sine.png" alt="Global Trajectory" style="width:70%; height:auto;">
+</div>
 
 ## Quadrupeds
 
 ### 3D Feet Trajectory
 
-![Argo](./images/trot_gait.gif)
-*3D Feet Trajectory Planning for Trot Gait: Rear Right and Front Right Feet*
+<div>
+    <img src="./images/trot_gait.png" alt="Global Trajectory" style="width:70%; height:auto;">
+</div>

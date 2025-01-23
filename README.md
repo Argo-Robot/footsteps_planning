@@ -14,7 +14,7 @@
 
 ### 3) 3D Feet Trajectory Planning
 
-![Argo](./images/3D.png)
+![Argo](./images/3D.PNG)
 *3D Feet Trajectory Planning*
 
 ### 4) ZMP Trajectory Generation

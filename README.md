@@ -4,8 +4,10 @@
 
 ### 1) Global Trajectory
 
-![Argo](./images/global_traj.png)
-*Global Trajectory*
+<div align="center">
+    <img src="./images/global_traj.png" alt="Global Trajectory" style="width:100%; height:auto;">
+    <p><em>Global Trajectory</em></p>
+</div>
 
 ### 2) 2D Footsteps Planning
 

@@ -64,11 +64,11 @@ x_{\text{foot}} = x_{\text{trajectory}} + \frac{W}{2} \cdot n_x \cdot (2 \cdot \
 y_{\text{foot}} = y_{\text{trajectory}} + \frac{W}{2} \cdot n_y \cdot (2 \cdot \text{is\_right\_foot} - 1)
 ```
 
-   The orientation of the foot is set to align with the tangent:
+    The orientation of the foot is set to align with the tangent:
 
-$$
+```math
 \theta_{\text{foot}} = \arctan2(t_y, t_x)
-$$
+```
 
 4. **Alternating Steps**:
    The algorithm alternates between placing left and right foot positions, ensuring symmetric gait patterns.

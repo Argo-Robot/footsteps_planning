@@ -252,8 +252,6 @@ The resulting trajectory $(x_{\text{CoM}}, y_{\text{CoM}})$ provides a smooth an
     <img src="./images/com_sine.png" alt="Global Trajectory" style="width:70%; height:auto;">
 </div><br>
 
-### 5.2) Open-Loop Sine Wave
-
 Another alternative to generate the CoM trajectory consists in introducing a sinusoidal perturbation around the global trajectory. This perturbation, added along the normal direction at each point, mimics the lateral oscillations observed in biological locomotion. While this approach doesn't derive directly from dynamic equations, it is inspired by the natural, rhythmic oscillations seen in biological systems. 
 
 #### Sinusoidal Perturbation Model

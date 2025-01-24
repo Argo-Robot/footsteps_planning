@@ -49,28 +49,28 @@ This method provides a simple way to simulate a global trajectory for navigation
 
 1. **Tangent and Normal Calculation**: At each point along the trajectory, a tangent vector $\mathbf{t} = [\cos(\theta), \sin(\theta)]$ is computed to determine the robot’s direction of motion. The normal vector $\mathbf{n}$ is derived from the tangent to define lateral offsets for foot placement:
    
-   $$
-   \mathbf{n} = [-\sin(\theta), \cos(\theta)]
-   $$
+$$
+\mathbf{n} = [-\sin(\theta), \cos(\theta)]
+$$
 
 2. **Foot Placement**:
    A new foot placement is added whenever the robot travels a distance equal to the step length $L$. The position of the foot is calculated as:
 
-   $$
-   x_{\text{foot}} = x_{\text{trajectory}} + \frac{W}{2} \cdot n_x \cdot (2 \cdot \text{is\_right\_foot} - 1)
-   $$
+```math
+x_{\text{foot}} = x_{\text{trajectory}} + \frac{W}{2} \cdot n_x \cdot (2 \cdot \text{is\_right\_foot} - 1)
+```
 
-   $$
-   y_{\text{foot}} = y_{\text{trajectory}} + \frac{W}{2} \cdot n_y \cdot (2 \cdot \text{is\_right\_foot} - 1)
-   $$
+```math
+y_{\text{foot}} = y_{\text{trajectory}} + \frac{W}{2} \cdot n_y \cdot (2 \cdot \text{is\_right\_foot} - 1)
+```
 
    The orientation of the foot is set to align with the tangent:
 
-   $$
-   \theta_{\text{foot}} = \arctan2(t_y, t_x)
-   $$
+$$
+\theta_{\text{foot}} = \arctan2(t_y, t_x)
+$$
 
-3. **Alternating Steps**:
+4. **Alternating Steps**:
    The algorithm alternates between placing left and right foot positions, ensuring symmetric gait patterns.
 
 By following this approach, the robot can accurately generate a sequence of 2D foot placements that follow the global trajectory while adhering to step length and width constraints.
@@ -95,51 +95,53 @@ Each step's trajectory is defined as a sequence of homogeneous transformations i
 1. **Time Normalization**:
    Each single step trajectory is generated over a normalized time interval $[0, 1]$, split into $n$ discrete steps:
    
-   $$
-   t = \text{linspace}(0, 1, n)
-   $$
+$$
+t = \text{linspace}(0, 1, n)
+$$
 
 2. **Interpolation for x, y Trajectory**:
    The positions in the $x-y$ plane are interpolated between the start and end positions of the step using cubic splines:
 
-   $$
-   x_{\text{traj}}(t) = \text{interp}(x_{\text{start}}, x_{\text{end}}, t)
-   $$
+$$
+x_{\text{traj}}(t) = \text{interp}(x_{\text{start}}, x_{\text{end}}, t)
+$$
 
-   $$
-   y_{\text{traj}}(t) = \text{interp}(y_{\text{start}}, y_{\text{end}}, t)
-   $$
+$$
+y_{\text{traj}}(t) = \text{interp}(y_{\text{start}}, y_{\text{end}}, t)
+$$
 
 3. **Parabolic z Trajectory**:
    To ensure smooth lifting and landing, the $z$-trajectory follows a parabolic profile:
 
-   $$
-   z_{\text{traj}}(t) = 4 \cdot H \cdot t \cdot (1 - t)
-   $$
+$$
+z_{\text{traj}}(t) = 4 \cdot H \cdot t \cdot (1 - t)
+$$
 
 4. **Homogeneous Transformation Matrices**:
    At each time step, the 3D foot position is represented as a homogeneous transformation matrix:
    
-   $$
-   T(t) =
-   \begin{bmatrix}
-   R_z(\theta) & \mathbf{p}(t) \\
-   0 & 1
-   \end{bmatrix}
-   $$
+$$
+T(t) =
+\begin{bmatrix}
+R_z(\theta) & \mathbf{p}(t) \\
+0 & 1
+\end{bmatrix}
+$$
 
    where:
-   - $R_z(\theta)$ is the rotation matrix for the foot orientation around $z$-axis:
-     $$
-     R_z(\theta) =
-     \begin{bmatrix}
-     \cos(\theta) & -\sin(\theta) & 0 \\
-     \sin(\theta) & \cos(\theta) & 0 \\
-     0 & 0 & 1
-     \end{bmatrix}
-     $$
-   - $\theta$ is the foot orientation. 
-   - $\mathbf{p}(t) = [x_{\text{traj}}(t), y_{\text{traj}}(t), z_{\text{traj}}(t)]^\top$ is the 3D position of the foot.
+- $R_z(\theta)$ is the rotation matrix for the foot orientation around $z$-axis:
+
+$$
+R_z(\theta) =
+\begin{bmatrix}
+\cos(\theta) & -\sin(\theta) & 0 \\
+\sin(\theta) & \cos(\theta) & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+- $\theta$ is the foot orientation. 
+- $\mathbf{p}(t) = [x_{\text{traj}}(t), y_{\text{traj}}(t), z_{\text{traj}}(t)]^\top$ is the 3D position of the foot.
 
 This process generates a sequence of 3D foot placements that follow the global trajectory, by computing poth 3D positions and 3D orientations for each foot.
 
@@ -220,28 +222,28 @@ where:
 The CoM trajectory can be calculated iteratively using the ZMP trajectory as input. At each time step, the following steps are performed:
 
 1. Compute the CoM acceleration:
-   $$
-   \ddot{x}_{\text{CoM}} = \frac{g}{h} (x_{\text{CoM}} - x_{\text{ZMP}})
-   $$
-   $$
-   \ddot{y}_{\text{CoM}} = \frac{g}{h} (y_{\text{CoM}} - y_{\text{ZMP}})
-   $$
+$$
+\ddot{x}_{\text{CoM}} = \frac{g}{h} (x_{\text{CoM}} - x_{\text{ZMP}})
+$$
+$$
+\ddot{y}_{\text{CoM}} = \frac{g}{h} (y_{\text{CoM}} - y_{\text{ZMP}})
+$$
 
 2. Integrate the acceleration to update the CoM velocity:
-   $$
-   \dot{x}_{\text{CoM}} = \dot{x}_{\text{CoM}} + \ddot{x}_{\text{CoM}} \cdot \Delta t
-   $$
-   $$
-   \dot{y}_{\text{CoM}} = \dot{y}_{\text{CoM}} + \ddot{y}_{\text{CoM}} \cdot \Delta t
-   $$
+$$
+\dot{x}_{\text{CoM}} = \dot{x}_{\text{CoM}} + \ddot{x}_{\text{CoM}} \cdot \Delta t
+$$
+$$
+\dot{y}_{\text{CoM}} = \dot{y}_{\text{CoM}} + \ddot{y}_{\text{CoM}} \cdot \Delta t
+$$
 
 3. Integrate the velocity to update the CoM position:
-   $$
-   x_{\text{CoM}} = x_{\text{CoM}} + \dot{x}_{\text{CoM}} \cdot \Delta t
-   $$
-   $$
-   y_{\text{CoM}} = y_{\text{CoM}} + \dot{y}_{\text{CoM}} \cdot \Delta t
-   $$
+$$
+x_{\text{CoM}} = x_{\text{CoM}} + \dot{x}_{\text{CoM}} \cdot \Delta t
+$$
+$$
+y_{\text{CoM}} = y_{\text{CoM}} + \dot{y}_{\text{CoM}} \cdot \Delta t
+$$
 
 The resulting trajectory $(x_{\text{CoM}}, y_{\text{CoM}})$ provides a smooth and stable path for the robot's Center of Mass, ensuring dynamic balance throughout the motion.
 

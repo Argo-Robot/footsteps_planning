@@ -99,8 +99,8 @@ Each step's trajectory is defined as a sequence of homogeneous transformations i
    t = \text{linspace}(0, 1, n)
    $$
 
-2. **Interpolation for $x, y$ Trajectory**:
-   The positions in the $x$-$y$ plane are interpolated between the start and end positions of the step using cubic splines:
+2. **Interpolation for x, y Trajectory**:
+   The positions in the $x-y$ plane are interpolated between the start and end positions of the step using cubic splines:
 
    $$
    x_{\text{traj}}(t) = \text{interp}(x_{\text{start}}, x_{\text{end}}, t)
@@ -110,7 +110,7 @@ Each step's trajectory is defined as a sequence of homogeneous transformations i
    y_{\text{traj}}(t) = \text{interp}(y_{\text{start}}, y_{\text{end}}, t)
    $$
 
-3. **Parabolic $z$ Trajectory**:
+3. **Parabolic z Trajectory**:
    To ensure smooth lifting and landing, the $z$-trajectory follows a parabolic profile:
 
    $$
@@ -178,7 +178,7 @@ The Center of Mass (CoM) trajectory plays a critical role in ensuring the robot 
 #### **Linear Inverted Pendulum (LIP) Model**
 
 <div>
-    <img src="./images/lip.jpg" alt="Global Trajectory" style="width:70%; height:auto;">
+    <img src="./images/lip.jpg" alt="Global Trajectory" style="width:60%; height:auto;">
 </div><br>
 
 The LIP model assumes the following:
@@ -187,7 +187,7 @@ The LIP model assumes the following:
 - The contact forces act at the ZMP, which lies within the support polygon.
 
 <div><br>
-    <img src="./images/lip2.png" alt="Global Trajectory" style="width:80%; height:auto;">
+    <img src="./images/lip2.png" alt="Global Trajectory" style="width:70%; height:auto;">
 </div><br>
 
 Using these assumptions, the horizontal CoM accelerations are directly related to the ZMP position. Indeed, recalling the ZMP definition (*it represents the point on the ground where the resultant moment of forces equals zero*), the following dynamic equations hold:
@@ -249,7 +249,7 @@ The resulting trajectory $(x_{\text{CoM}}, y_{\text{CoM}})$ provides a smooth an
 #### 5.2) Open-Loop Sine Wave 
 
 <div>
-    <img src="./images/com_sine.png" alt="Global Trajectory" style="width:70%; height:auto;">
+    <img src="./images/com_sine.png" alt="Global Trajectory" style="width:85%; height:auto;">
 </div><br>
 
 ### 5.2) Open-Loop Sine Wave

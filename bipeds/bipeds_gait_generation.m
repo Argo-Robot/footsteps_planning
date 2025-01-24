@@ -88,17 +88,7 @@ function [CoM_trajectory] = generate_pelvis_trajectory(trajectory, T, delta_T)
     CoM_trajectory = cell(num_points, 1);
     
     for i = 1:num_points
-        % Rotation matrix around z-axis
-        R_z = [cos(trajectory(i,4)), -sin(trajectory(i,4)), 0;
-               sin(trajectory(i,4)),  cos(trajectory(i,4)), 0;
-                                  0,                     0, 1];
-        
-        % Homogeneous transformation matrix
-        T = eye(4);
-        T(1:3, 1:3) = R_z;
-        T(1:3, 4) = [x_perturbed(i); y_perturbed(i); z_perturbed(i)];
-        
-        CoM_trajectory{i} = T;
+        CoM_trajectory{i} = [x_perturbed(i), y_perturbed(i), z_perturbed(i)];
     end
     
     % Plot results

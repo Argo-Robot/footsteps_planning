@@ -194,25 +194,28 @@ The LIP model assumes the following:
 
 Using these assumptions, the horizontal CoM accelerations are directly related to the ZMP position. Indeed, recalling the ZMP definition (*it represents the point on the ground where the resultant moment of forces equals zero*), the following dynamic equations hold:
 
-$$
+```math
 M_{y_{{zmp}}} = m \cdot \ddot{x}_{\text{CoM}} \cdot {z}_{\text{CoM}} - mg \cdot (\dot{x}_{\text{CoM}} - x_{\text{ZMP}}) = 0
-$$
+```
 
-$$
+```math
 M_{x_{{zmp}}} = m \cdot \ddot{y}_{\text{CoM}} \cdot {z}_{\text{CoM}} - mg \cdot (\dot{y}_{\text{CoM}} - y_{\text{ZMP}}) = 0
-$$
+```
 
 Rearranging the equations, we obtain:
-$$
-\ddot{x}_{\text{CoM}} = \frac{g}{h} (x_{\text{CoM}} - x_{\text{ZMP}})
-$$
 
-$$
+```math
+\ddot{x}_{\text{CoM}} = \frac{g}{h} (x_{\text{CoM}} - x_{\text{ZMP}})
+```
+
+```math
 \ddot{y}_{\text{CoM}} = \frac{g}{h} (y_{\text{CoM}} - y_{\text{ZMP}})
-$$
+```
 
 where:
-- $\ddot{x}_{\text{CoM}}$ and $\ddot{y}_{\text{CoM}}$ are the accelerations of the CoM in the $x$- and $y$-directions, respectively.
+
+- $\ddot{x}_{\text{CoM}}$ is the acceleration of the CoM in the $x$-direction.
+- $\ddot{y}_{\text{CoM}}$ is the acceleration of the CoM in the $y$-direction.
 - $x_{\text{ZMP}}$ and $y_{\text{ZMP}}$ are the ZMP coordinates in the $x$- and $y$-directions.
 - $g$ is the gravitational constant.
 - $h$ is the constant height of the CoM above the ground.
@@ -222,28 +225,34 @@ where:
 The CoM trajectory can be calculated iteratively using the ZMP trajectory as input. At each time step, the following steps are performed:
 
 1. Compute the CoM acceleration:
-$$
+
+```math
 \ddot{x}_{\text{CoM}} = \frac{g}{h} (x_{\text{CoM}} - x_{\text{ZMP}})
-$$
-$$
+```
+
+```math
 \ddot{y}_{\text{CoM}} = \frac{g}{h} (y_{\text{CoM}} - y_{\text{ZMP}})
-$$
+```
 
-2. Integrate the acceleration to update the CoM velocity:
-$$
+3. Integrate the acceleration to update the CoM velocity:
+
+```math
 \dot{x}_{\text{CoM}} = \dot{x}_{\text{CoM}} + \ddot{x}_{\text{CoM}} \cdot \Delta t
-$$
-$$
-\dot{y}_{\text{CoM}} = \dot{y}_{\text{CoM}} + \ddot{y}_{\text{CoM}} \cdot \Delta t
-$$
+```
 
-3. Integrate the velocity to update the CoM position:
-$$
+```math
+\dot{y}_{\text{CoM}} = \dot{y}_{\text{CoM}} + \ddot{y}_{\text{CoM}} \cdot \Delta t
+```
+
+5. Integrate the velocity to update the CoM position:
+
+```math
 x_{\text{CoM}} = x_{\text{CoM}} + \dot{x}_{\text{CoM}} \cdot \Delta t
-$$
-$$
+```
+
+```math
 y_{\text{CoM}} = y_{\text{CoM}} + \dot{y}_{\text{CoM}} \cdot \Delta t
-$$
+```
 
 The resulting trajectory $(x_{\text{CoM}}, y_{\text{CoM}})$ provides a smooth and stable path for the robot's Center of Mass, ensuring dynamic balance throughout the motion.
 
@@ -273,25 +282,30 @@ where:
 
 1. **Compute Arc Length**:
    The arc length is computed incrementally along the trajectory as:
-   $$
-   s(i) = s(i-1) + \sqrt{\left(x(i) - x(i-1)\right)^2 + \left(y(i) - y(i-1)\right)^2}
-   $$
+   
+```math
+s(i) = s(i-1) + \sqrt{\left(x(i) - x(i-1)\right)^2 + \left(y(i) - y(i-1)\right)^2}
+```
 
-2. **Tangent and Normal Vectors**:
+3. **Tangent and Normal Vectors**:
    At each point, the tangent vector $\vec{t}$ is calculated as:
-   $$
-   \vec{t} = \frac{\partial \vec{p}}{\partial s} = \left( \frac{\partial x}{\partial s}, \frac{\partial y}{\partial s} \right)
-   $$
+   
+```math
+\vec{t} = \frac{\partial \vec{p}}{\partial s} = \left( \frac{\partial x}{\partial s}, \frac{\partial y}{\partial s} \right)
+```
+   
    The normal vector $\vec{n}$ is derived by rotating the tangent vector 90°:
-   $$
-   \vec{n} = (-t_y, t_x)
-   $$
+   
+```math
+\vec{n} = (-t_y, t_x)
+```
 
-3. **Apply Perturbation**:
+5. **Apply Perturbation**:
    The sine wave perturbation is applied along the normal vector:
-   $$
-   \vec{p}_{\text{perturbed}} = \vec{p}_{\text{global\_trajectory}} + s(t) \cdot \vec{n}
-   $$
+
+```math
+\vec{p}_{\text{perturbed}} = \vec{p}_{\text{global\_trajectory}} + s(t) \cdot \vec{n}
+```
 
 This simpler approach generates an open-loop CoM trajectory, simulating oscillating gait patterns often observed in biological locomotion. 
 
@@ -346,7 +360,7 @@ This approach allows for precise control over the motion of each foot, enabling 
 
 ## Key Works and Citations
 
-- **Clement Gaspard**: [*FootstepNet: an Efficient Actor-Critic Method for Fast On-line Bipedal Footstep Planning and Forecasting*](https://arxiv.org/pdf/2403.12589v2)
+- **Clement Gaspard**: [*FootstepNet: an Efficient Actor-Critic Method for Fast On-line Bipedal Footstep Planning*](https://arxiv.org/pdf/2403.12589v2)
 - **Shuuji Kajita**: [*The 3D Linear Inverted Pendulum Mode: a simple modeling for a biped walking pattern generation*](https://www.cs.cmu.edu/~hgeyer/Teaching/R16-899B/Papers/KajiitaEA01IEEE_ICIRS.pdf)
 - **Shuuji Kajita**: [*Biped Walking Pattern Generation by using Zero-Moment Point*](https://mzucker.github.io/swarthmore/e91_s2013/readings/kajita2003preview.pdf)
 - **Maurice Rahme**: [*Spot Mini Mini Open Source*](https://moribots.github.io/project/spot-mini-mini)

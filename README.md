@@ -308,7 +308,7 @@ Common Gait Patterns:
 ### 3D Foot Trajectory for Quadrupeds
 
 <div>
-    <img src="./images/animation.gif" alt="Global Trajectory" style="width:70%; height:auto;">
+    <img src="./images/animation.gif" alt="Global Trajectory" style="width:85%; height:auto;">
 </div><br>
 
 The 3D foot trajectory describes the path of each foot in three-dimensional space (x, y, z) throughout the gait cycle. For quadrupeds, we use an elliptical trajectory to represent the foot motion in the xz-plane:

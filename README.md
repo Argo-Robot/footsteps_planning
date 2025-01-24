@@ -177,7 +177,7 @@ The Center of Mass (CoM) trajectory plays a critical role in ensuring the robot 
 
 #### **Linear Inverted Pendulum (LIP) Model**
 
-<div>
+<div><br>
     <img src="./images/lip.jpg" alt="Global Trajectory" style="width:60%; height:auto;">
 </div><br>
 
@@ -249,7 +249,7 @@ The resulting trajectory $(x_{\text{CoM}}, y_{\text{CoM}})$ provides a smooth an
 #### 5.2) Open-Loop Sine Wave 
 
 <div>
-    <img src="./images/com_sine.png" alt="Global Trajectory" style="width:85%; height:auto;">
+    <img src="./images/com_sine.png" alt="Global Trajectory" style="width:70%; height:auto;">
 </div><br>
 
 ### 5.2) Open-Loop Sine Wave

@@ -346,12 +346,12 @@ function CoM_trajectory = generate_CoM_trajectory_from_ZMP(zmp_trajectory, h, de
     for i = 2:num_points
         
         % CoM acceleration 
-        acc_x = (g/h)*(zmp_trajectory(i, 1) - pos_x);
-        acc_y = (g/h)*(zmp_trajectory(i, 2) - pos_y);
-    
+        acc_x = (g/h)*(pos_x - zmp_trajectory(i, 1));
+        acc_y = (g/h)*(pos_y - zmp_trajectory(i, 2));
+        
         % Compute CoM velocity by integrating CoM acceleration 
-        vel_x = vel_x + acc_x * delta_t;
-        vel_y = vel_y + acc_y * delta_t;
+        vel_x = vel_x - acc_x * delta_t;
+        vel_y = vel_y - acc_y * delta_t;
         
         % Compute CoM position by integrating CoM velocity 
         pos_x = pos_x + vel_x * delta_t;
@@ -405,11 +405,11 @@ step_time = 1.0; % [s]
 foot_trajectory = generate_foot_trajectory_3d(foot_positions, step_height, step_length, step_time, delta_T);
 
 % generate ZMP trajectory
-delta_size_spline = 0.01;
+delta_size_spline = 0.001;
 zmp_trajectory = generate_zmp_trajectory_spline(foot_positions, delta_size_spline, step_length, step_width, foot_size);
 
 % alternative: generate CoM trajectory by using dynamics relations with ZMP
-h_com = 3.0; % [m]
+h_com = 1.5; % [m]
 CoM_trajectory_dynamics = generate_CoM_trajectory_from_ZMP(zmp_trajectory, h_com, delta_T);
 
 

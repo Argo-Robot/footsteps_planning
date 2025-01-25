@@ -234,14 +234,14 @@ The CoM trajectory can be calculated iteratively using the ZMP trajectory as inp
 \ddot{y}_{\text{CoM}} = \frac{g}{h} (y_{\text{CoM}} - y_{\text{ZMP}})
 ```
 
-3. Integrate the acceleration to update the CoM velocity:
+3. Integrate the acceleration to update the CoM velocity (keep in mind it is an intertial acceleration):
 
 ```math
-\dot{x}_{\text{CoM}} = \dot{x}_{\text{CoM}} + \ddot{x}_{\text{CoM}} \cdot \Delta t
+\dot{x}_{\text{CoM}} = \dot{x}_{\text{CoM}} - \ddot{x}_{\text{CoM}} \cdot \Delta t
 ```
 
 ```math
-\dot{y}_{\text{CoM}} = \dot{y}_{\text{CoM}} + \ddot{y}_{\text{CoM}} \cdot \Delta t
+\dot{y}_{\text{CoM}} = \dot{y}_{\text{CoM}} - \ddot{y}_{\text{CoM}} \cdot \Delta t
 ```
 
 5. Integrate the velocity to update the CoM position:

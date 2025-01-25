@@ -172,7 +172,7 @@ The Center of Mass (CoM) trajectory plays a critical role in ensuring the robot 
 #### 5.1) Dynamics Relations with ZMP
 
 <div class="left-aligned">
-    <img src="./images/com_dyn.png" alt="Global Trajectory" style="width:90%; height:auto;">
+    <img src="./images/com_dyn.png" alt="Global Trajectory" style="width:70%; height:auto;">
 </div><br>
 
  The CoM and the ZMP relationship can be expressed through the Linear Inverted Pendulum (LIP) model, which is a simplified dynamic representation of a robot's motion.

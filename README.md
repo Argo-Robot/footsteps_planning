@@ -1,5 +1,9 @@
 # Footsteps Planning: Step-by-Step Guide
 
+<div>
+    <img src="./images/output.gif" alt="Global Trajectory" style="width:85%; height:auto;">
+</div><br>
+
 Footstep planning is a fundamental component of locomotion for legged robots, allowing them to move efficiently and adaptively in complex environments. Whether it’s a biped navigating a cluttered household or a quadruped traversing uneven terrain, this process involves generating precise foot trajectories while considering the robot's dynamics and stability constraints.
 
 Typically, the planning process consists of two stages:
